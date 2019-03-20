@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: __dirname + '/docs',
-        publicPath: '/',
+        publicPath: './',
         filename: '[name].js'
     },
     module: {
@@ -29,15 +29,15 @@ module.exports = {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader"]
             },
-            {
-                test: /\.html$/,
-                use: [ {
-                    loader: 'html-loader',
-                    options: {
-                        minimize: true
-                    }
-                }],
-            }
+            // {
+            //     test: /\.html$/,
+            //     use: [ {
+            //         loader: 'html-loader',
+            //         options: {
+            //             minimize: true
+            //         }
+            //     }],
+            // }
         ]
     },
     resolve: {
@@ -55,7 +55,7 @@ module.exports = {
             chunkFilename: "[id].css"
         }),
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: "./index.html"
         }),
     ]
 };
