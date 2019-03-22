@@ -8,8 +8,8 @@ class Unit extends Component {
             <Draggable draggableId={ this.props.unitId }
                        index={ this.props.index }
             >
-                { provided => (
-                    <div className="unit"
+                { (provided, snapshot) => (
+                    <div className={ 'unit'.concat(snapshot.isDragging ? ' dragging' : '') }
                          { ...provided.draggableProps }
                          { ...provided.dragHandleProps }
                         ref={ provided.innerRef }
@@ -29,9 +29,12 @@ class Column extends Component {
                     <h2>{ this.props.colName }</h2>
                 </div>
                 <Droppable droppableId={ this.props.colId } >
-                    { provided => (
+                    { (provided, snapshot) => (
                         <div ref={ provided.innerRef }
                              { ...provided.droppableProps }
+                            className={'column-droppable-area'.concat(
+                                snapshot.isDraggingOver ? ' draggedOver' : ''
+                            )}
                         >
                             { this.props.units.map((unit, index) =>
                                 (
