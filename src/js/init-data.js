@@ -27,9 +27,7 @@ const initialData = {
             unitIds: ['unit-7', 'unit-8']
         }
     },
-    columnOrder: ['col-0',
-        'col-1', 'col-2'
-    ]
+    columnOrder: ['col-0', 'col-1', 'col-2']
 };
 
 export default initialData;

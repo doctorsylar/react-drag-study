@@ -55,7 +55,9 @@ class DraggableList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.initData
+            units: this.props.initData.units,
+            columns: this.props.initData.columns,
+            columnOrder: this.props.initData.columnOrder
         };
     }
     onDragEnd = result => {
@@ -66,6 +68,17 @@ class DraggableList extends Component {
         if (destination.droppableId === source.droppableId &&
         destination.index === source.index ) return;
 
+    //    updating state after finishing drag
+        let sourceCol = this.state.columns[source.droppableId];
+        let destinationCol = this.state.columns[destination.droppableId];
+        let transferedUnit = sourceCol.unitIds.splice(source.index, 1)[0];
+        destinationCol.unitIds.splice(destination.index, 0, transferedUnit);
+        let columns = this.state.columns;
+        columns[source.droppableId] = sourceCol;
+        columns[destination.droppableId] = destinationCol;
+        this.setState({
+            columns: columns
+        })
     };
     render() {
         return (
@@ -74,9 +87,9 @@ class DraggableList extends Component {
                     onDragEnd={ this.onDragEnd }
                 >
                     {
-                        this.state.data['columnOrder'].map(col => {
-                            const column = this.state.data['columns'][col];
-                            const units = column.unitIds.map(unitId => this.state.data.units[unitId]);
+                        this.state['columnOrder'].map(col => {
+                            const column = this.state['columns'][col];
+                            const units = column.unitIds.map(unitId => this.state.units[unitId]);
                             return (
                                 <Column key={ col }
                                         colId={ col }
