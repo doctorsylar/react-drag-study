@@ -6,6 +6,5 @@ import initialData from './js/init-data';
 
 // JS CODE
 
-console.log(initialData);
 // Rendering RoomList component
-ReactDOM.render(<DraggableList data={initialData} />, document.querySelector('#draggable-sortable-list'));
+ReactDOM.render(<DraggableList initData={initialData} />, document.querySelector('#draggable-sortable-list'));

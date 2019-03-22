@@ -55,17 +55,16 @@ class DraggableList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.data
+            data: this.props.initData
         };
-        console.log(this.props);
     }
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
 
+        // cases for doing nothing
+        if (!destination) return;
         if (destination.droppableId === source.droppableId &&
-        destination.index === source.index ) {
-            return;
-        }
+        destination.index === source.index ) return;
 
     };
     render() {
@@ -75,24 +74,18 @@ class DraggableList extends Component {
                     onDragEnd={ this.onDragEnd }
                 >
                     {
-                        this.state.data['columns'].map(col => {
-                            let colId = col['colId'];
-                            let units = [];
-                            this.state.data['units'].map(unit => {
-                                if (unit['col'] === colId) {
-                                    units.push(unit);
-                                }
-                            });
+                        this.state.data['columnOrder'].map(col => {
+                            const column = this.state.data['columns'][col];
+                            const units = column.unitIds.map(unitId => this.state.data.units[unitId]);
                             return (
-                                <Column key={ colId }
-                                        colId={ colId }
-                                        colName={ col['colName'] }
+                                <Column key={ col }
+                                        colId={ col }
+                                        colName={ column['colName'] }
                                         units={ units }
                                 />
                             )
                         })
                     }
-
                 </DragDropContext>
             </div>
         )
