@@ -1,3 +1,24 @@
 h1 {
     color: red;
 }
+h2 {
+    color: #2e035c;
+}
+.columns-container {
+    display: flex;
+    justify-content: flex-start;
+}
+.column {
+    min-width: 200px;
+    background-color: #d1dbe6;
+    border: 2px solid #2e035c;
+    border-radius: 6px;
+    margin: 5px;
+    padding: 5px 8px;
+}
+.column .unit {
+    background-color: #ffdefe;
+    margin-bottom: 5px;
+    padding: 3px;
+    color: #2e035c;
+}
