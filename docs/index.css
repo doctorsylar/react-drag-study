@@ -15,12 +15,27 @@ h2 {
     border-radius: 6px;
     margin: 5px;
     padding: 5px 8px;
+    display: flex;
+    flex-direction: column;
+}
+.column .column-droppable-area {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #a0b7bf;
+    transition: background-color .15s;
+}
+.column .column-droppable-area.draggedOver {
+    background-color: #8c9faa;
 }
 .column .unit {
-    background-color: #ffdefe;
-    margin-bottom: 5px;
-    padding: 3px;
+    background-color: #fff6fe;
+    margin-bottom: 8px;
+    padding: 6px 10px;
     color: #2e035c;
+    border: 1px solid #2e035c;
+}
+.column .unit.dragging {
+    background-color: #e0d5ff;
 }
 
 /*# sourceMappingURL=index.css.map*/
