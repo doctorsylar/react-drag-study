@@ -34,6 +34,11 @@ h2 {
     color: #2e035c;
     border: 1px solid #2e035c;
 }
+.column .unit:focus,
+.column .unit.dragging {
+    outline: none;
+    border: 3px solid #410390;
+}
 .column .unit.dragging {
     background-color: #e0d5ff;
 }

@@ -21,6 +21,24 @@ class Unit extends Component {
         )
     }
 }
+class UnitList extends Component {
+    shouldComponentUpdate(nextProps) {
+        return JSON.stringify(nextProps.units) !== JSON.stringify(this.props.units);
+    }
+    render() {
+        return (
+            this.props.units.map((unit, index) =>
+                (
+                    <Unit key={ unit['id'] }
+                          unitId={ unit['id'] }
+                          text={ unit['text'] }
+                          index={ index }
+                    />
+                )
+            )
+        )
+    }
+}
 class Column extends Component {
     render() {
         return (
@@ -36,15 +54,8 @@ class Column extends Component {
                                 snapshot.isDraggingOver ? ' draggedOver' : ''
                             )}
                         >
-                            { this.props.units.map((unit, index) =>
-                                (
-                                    <Unit key={ unit['id'] }
-                                          unitId={ unit['id'] }
-                                          text={ unit['text'] }
-                                          index={ index }
-                                    />
-                                )
-                            )}
+                            <UnitList units={this.props.units}/>
+
                             { provided.placeholder }
                         </div>
                     )}
