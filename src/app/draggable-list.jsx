@@ -1,20 +1,37 @@
 import '../css/style.css';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { DragDropContext, Draggable, Droppable, resetServerContext } from 'react-beautiful-dnd';
 
 class Unit extends Component {
     render() {
+        let importance;
+        switch (this.props.importance) {
+            case 0: importance = ' not-important';
+                break;
+            case 1: importance = ' important';
+                break;
+            case 2: importance = ' extra-important';
+                break;
+        }
         return (
             <Draggable draggableId={ this.props.unitId }
                        index={ this.props.index }
             >
                 { (provided, snapshot) => (
-                    <div className={ 'unit'.concat(snapshot.isDragging ? ' dragging' : '') }
+                    <div className={ 'unit'
+                        .concat(snapshot.isDragging ? ' dragging' : '')
+                        .concat(importance) }
                          { ...provided.draggableProps }
                          { ...provided.dragHandleProps }
                         ref={ provided.innerRef }
                     >
-                        { this.props.text }
+                        {/*<div className="task-importance-indicator"></div>*/}
+                        <div className="task-text-container">
+                            <p className="task-text">{ this.props.text }</p>
+                            <div className="task-duration">
+                                { this.props.continuous ? 'continuous' : 'done-once' }
+                            </div>
+                        </div>
                     </div>
                 )}
             </Draggable>
@@ -33,6 +50,8 @@ class UnitList extends Component {
                     <Unit key={ unit['id'] }
                           unitId={ unit['id'] }
                           text={ unit['text'] }
+                          importance={ unit['importance'] }
+                          continuous={ unit['continuous'] }
                           index={ index }
                     />
                 )
@@ -103,32 +122,35 @@ class DraggableList extends Component {
     };
     render() {
         return (
-            <div className={'columns-container'}>
-                <DragDropContext
-                    onDragStart={ this.onDragStart }
-                    onDragEnd={ this.onDragEnd }
-                >
-                    {
-                        this.state['columnOrder'].map(col => {
-                            const column = this.state['columns'][col];
-                            const units = [];
-                            this.state.units.forEach(unit => {
-                                for (let unitIdIndex in column.unitIds) {
-                                    if (unit.id === column.unitIds[unitIdIndex]) {
-                                        units[unitIdIndex] = unit;
+            <div className="outer-app-container">
+                <h1>Weird drag'n'drop Todo-list application</h1>
+                <div className={'columns-container'}>
+                    <DragDropContext
+                        onDragStart={ this.onDragStart }
+                        onDragEnd={ this.onDragEnd }
+                    >
+                        {
+                            this.state['columnOrder'].map(col => {
+                                const column = this.state['columns'][col];
+                                const units = [];
+                                this.state.units.forEach(unit => {
+                                    for (let unitIdIndex in column.unitIds) {
+                                        if (unit.id === column.unitIds[unitIdIndex]) {
+                                            units[unitIdIndex] = unit;
+                                        }
                                     }
-                                }
-                            });
-                            return (
-                                <Column key={ col }
-                                        colId={ col }
-                                        colName={ column['colName'] }
-                                        units={ units }
-                                />
-                            )
-                        })
-                    }
-                </DragDropContext>
+                                });
+                                return (
+                                    <Column key={ col }
+                                            colId={ col }
+                                            colName={ column['colName'] }
+                                            units={ units }
+                                    />
+                                )
+                            })
+                        }
+                    </DragDropContext>
+                </div>
             </div>
         )
     }

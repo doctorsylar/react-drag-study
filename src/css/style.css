@@ -12,7 +12,7 @@ h2 {
     justify-content: flex-start;
 }
 .column {
-    min-width: 200px;
+    width: 280px;
     background-color: #d1dbe6;
     border: 2px solid #2e035c;
     border-radius: 6px;
@@ -35,13 +35,49 @@ h2 {
     margin-bottom: 8px;
     padding: 6px 10px;
     color: #2e035c;
-    border: 1px solid #2e035c;
+    border: 2px solid #2e035c;
+    display: flex;
+    justify-content: flex-start;
+}
+.column .unit:before {
+    content: '';
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid black;
+    align-self: center;
+    flex-shrink: 0;
+}
+.column .unit.not-important:before {
+    border-color: #00ff66;
+    background-color: #00ff66;
+}
+.column .unit.important:before {
+    border-color:#fff300 ;
+    background-color: #fff300;
+}
+.column .unit.extra-important:before {
+    border-color: #d40f04;
+    background-color: #d40f04;
 }
 .column .unit:focus,
 .column .unit.dragging {
-    outline: none;
-    border: 3px solid #410390;
+    outline: 2px solid #00a6f1;
+    border-color: #410390;
 }
 .column .unit.dragging {
     background-color: #e0d5ff;
+}
+.column .unit .task-text-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.column .unit .task-text-container .task-text {
+    text-align: left;
+}
+.column .unit .task-text-container .task-duration {
+    text-align: right;
+    font-style: italic;
 }
