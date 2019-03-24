@@ -26,9 +26,10 @@ class UnitList extends Component {
         return JSON.stringify(nextProps.units) !== JSON.stringify(this.props.units);
     }
     render() {
-        return (
-            this.props.units.map((unit, index) =>
-                (
+        let result = [];
+        this.props.units.forEach((unit, index) =>
+            (
+                result.push(
                     <Unit key={ unit['id'] }
                           unitId={ unit['id'] }
                           text={ unit['text'] }
@@ -36,7 +37,8 @@ class UnitList extends Component {
                     />
                 )
             )
-        )
+        );
+        return result;
     }
 }
 class Column extends Component {
@@ -47,7 +49,7 @@ class Column extends Component {
                     <h2>{ this.props.colName }</h2>
                 </div>
                 <Droppable droppableId={ this.props.colId } >
-                    { (provided, snapshot) => (
+                    {(provided, snapshot) => (
                         <div ref={ provided.innerRef }
                              { ...provided.droppableProps }
                             className={'column-droppable-area'.concat(
@@ -74,7 +76,12 @@ class DraggableList extends Component {
             columnOrder: this.props.initData.columnOrder
         };
     }
+    onDragStart = start => {
+        // console.log('onDragStart');
+        // console.log(start);
+    };
     onDragEnd = result => {
+        console.log(result);
         const { destination, source, draggableId } = result;
 
         // cases for doing nothing
@@ -98,12 +105,20 @@ class DraggableList extends Component {
         return (
             <div className={'columns-container'}>
                 <DragDropContext
+                    onDragStart={ this.onDragStart }
                     onDragEnd={ this.onDragEnd }
                 >
                     {
                         this.state['columnOrder'].map(col => {
                             const column = this.state['columns'][col];
-                            const units = column.unitIds.map(unitId => this.state.units[unitId]);
+                            const units = [];
+                            this.state.units.forEach(unit => {
+                                for (let unitIdIndex in column.unitIds) {
+                                    if (unit.id === column.unitIds[unitIdIndex]) {
+                                        units[unitIdIndex] = unit;
+                                    }
+                                }
+                            });
                             return (
                                 <Column key={ col }
                                         colId={ col }

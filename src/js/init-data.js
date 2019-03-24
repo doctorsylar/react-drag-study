@@ -1,15 +1,15 @@
 const initialData = {
-    units: {
-        'unit-0': { id: 'unit-0', importance: 0, text: 'unit with id zero'},
-        'unit-1': { id: 'unit-1', importance: 0, text: 'unit with id one'},
-        'unit-2': { id: 'unit-2', importance: 0, text: 'unit with id two'},
-        'unit-3': { id: 'unit-3', importance: 0, text: 'unit with id three'},
-        'unit-4': { id: 'unit-4', importance: 0, text: 'unit with id four'},
-        'unit-5': { id: 'unit-5', importance: 0, text: 'unit with id five'},
-        'unit-6': { id: 'unit-6', importance: 0, text: 'unit with id six'},
-        'unit-7': { id: 'unit-7', importance: 0, text: 'unit with id seven'},
-        'unit-8': { id: 'unit-8', importance: 0, text: 'unit with id eight'}
-    },
+    units: [
+        { id: 'unit-0', importance: 0, text: 'unit with id zero'},
+        { id: 'unit-1', importance: 0, text: 'unit with id one'},
+        { id: 'unit-2', importance: 0, text: 'unit with id two'},
+        { id: 'unit-3', importance: 0, text: 'unit with id three'},
+        { id: 'unit-4', importance: 0, text: 'unit with id four'},
+        { id: 'unit-5', importance: 0, text: 'unit with id five'},
+        { id: 'unit-6', importance: 0, text: 'unit with id six'},
+        { id: 'unit-7', importance: 0, text: 'unit with id seven'},
+        { id: 'unit-8', importance: 0, text: 'unit with id eight'}
+    ],
     columns: {
         'plans' : {
             colId: 'plans',
