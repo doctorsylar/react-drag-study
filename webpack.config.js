@@ -37,6 +37,17 @@ module.exports = {
                         minimize: true
                     }
                 }],
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'img'
+                        },
+                    },
+                ],
             }
         ]
     },

@@ -13,7 +13,7 @@ h2 {
 }
 .column {
     width: 280px;
-    background-color: #d1dbe6;
+    background-color: rgb(235, 236, 240);
     border: 2px solid #2e035c;
     border-radius: 6px;
     margin: 5px;
@@ -24,11 +24,11 @@ h2 {
 .column .column-droppable-area {
     flex-grow: 1;
     padding: 10px;
-    background-color: #a0b7bf;
+    background-color: rgb(235, 236, 240);
     transition: background-color .15s;
 }
 .column .column-droppable-area.draggedOver {
-    background-color: #8c9faa;
+    background-color: rgb(200, 201, 205);
 }
 .column .unit {
     background-color: #fff6fe;
@@ -51,15 +51,15 @@ h2 {
 }
 .column .unit.not-important:before {
     border-color: #00ff66;
-    background-color: #00ff66;
+    background: #00ff66 url(./img/d2ab10330174a2f88e274ad3bac1d529.png) center center no-repeat;
 }
 .column .unit.important:before {
     border-color:#fff300 ;
-    background-color: #fff300;
+    background: #fff300 url(./img/2df554f0b87ad068cff4dd588604875c.png) center center no-repeat;
 }
 .column .unit.extra-important:before {
     border-color: #d40f04;
-    background-color: #d40f04;
+    background: #d40f04 url(./img/8f9da5917c8b5a714748b45cfa1724db.png) center center no-repeat;
 }
 .column .unit:focus,
 .column .unit.dragging {
