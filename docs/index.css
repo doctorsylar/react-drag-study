@@ -81,5 +81,8 @@ h2 {
     text-align: right;
     font-style: italic;
 }
+.column.column-done .unit {
+    background-color: #4c9c7a;
+}
 
 /*# sourceMappingURL=index.css.map*/

@@ -63,7 +63,7 @@ class UnitList extends Component {
 class Column extends Component {
     render() {
         return (
-            <div className={'column'}>
+            <div className={'column column-' + this.props.colId}>
                 <div className="column-title">
                     <h2>{ this.props.colName }</h2>
                 </div>
